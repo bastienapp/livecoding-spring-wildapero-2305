@@ -2,16 +2,14 @@ package com.wildcodeschool.wildapero.controller;
 
 import com.wildcodeschool.wildapero.model.Apero;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController // on crée un API : tout renvoi du JSON, on ne précise plus @ResponseBody
 @RequestMapping("/api/aperos")
+@CrossOrigin("http://localhost:4200")
 public class AperoController {
 
     List<Apero> aperoList;
