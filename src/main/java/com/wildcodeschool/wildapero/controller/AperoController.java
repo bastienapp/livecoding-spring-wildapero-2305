@@ -28,7 +28,7 @@ public class AperoController {
         return aperoList;
     }
 
-    // READ ONE - ONE
+    // READ ONE - GET
     @GetMapping("/{id}")
     public Apero getById(
             // @RequestParam Integer id // query param
