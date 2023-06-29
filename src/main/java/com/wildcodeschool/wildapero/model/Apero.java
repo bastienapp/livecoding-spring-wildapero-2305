@@ -1,8 +1,8 @@
 package com.wildcodeschool.wildapero.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
+// Java Bean : serializable, constructeur vide, attribus privées, getters/setters
 public class Apero {
 
     private Long id;
@@ -10,6 +10,8 @@ public class Apero {
     private String name;
 
     private List<String> ingredients;
+
+    public Apero() {}
 
     public Apero(Long id, String name, List<String> ingredients) {
         this.id = id;
