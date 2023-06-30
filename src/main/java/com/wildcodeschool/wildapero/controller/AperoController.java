@@ -1,8 +1,10 @@
 package com.wildcodeschool.wildapero.controller;
 
-import com.wildcodeschool.wildapero.model.Apero;
+import com.wildcodeschool.wildapero.entity.Apero;
 import com.wildcodeschool.wildapero.repository.AperoRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,27 +27,26 @@ public class AperoController {
     @GetMapping("/{id}")
     public Apero getById(
             // @RequestParam Integer id // query param
-            @PathVariable Integer id
+            @PathVariable Long id
     ) {
-        return null;
+        return this.aperoRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("")
     public Apero create(@RequestBody Apero newApero) {
-        return null;
+        return this.aperoRepository.save(newApero);
     }
 
     // rechercher avec PATCH
-    @PutMapping("/{id}")
-    public Apero update(
-            @PathVariable Integer id,
-            @RequestBody Apero aperoInfos
-    ) {
-        return null;
+    @PutMapping("")
+    public Apero update(@RequestBody Apero aperoInfos) {
+        return this.aperoRepository.save(aperoInfos);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-
+    public void delete(@PathVariable Long id) {
+        this.aperoRepository.deleteById(id);
     }
 }
