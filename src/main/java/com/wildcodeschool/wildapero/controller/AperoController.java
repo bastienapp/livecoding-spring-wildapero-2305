@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController // on crée un API : tout renvoi du JSON, on ne précise plus @ResponseBody
 @RequestMapping("/api/aperos")
@@ -32,6 +33,19 @@ public class AperoController {
         return this.aperoRepository
                 .findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/name/{nameValue}")
+    public Apero getByName(@PathVariable("nameValue") String name) {
+        return this.aperoRepository
+                .findAperoByName(name)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/name/containing/{nameValue}")
+    public List<Apero> getByNameContaining(@PathVariable("nameValue") String name) {
+        return this.aperoRepository
+                .findAperosByNameContaining(name);
     }
 
     @PostMapping("")
