@@ -6,8 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController // on crée un API : tout renvoi du JSON, on ne précise plus @ResponseBody
 @RequestMapping("/api/aperos")
@@ -28,7 +33,7 @@ public class AperoController {
     @GetMapping("/{id}")
     public Apero getById(
             // @RequestParam Integer id // query param
-            @PathVariable Long id
+            @PathVariable UUID id
     ) {
         return this.aperoRepository
                 .findById(id)
@@ -60,7 +65,7 @@ public class AperoController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable UUID id) {
         this.aperoRepository.deleteById(id);
     }
 }
